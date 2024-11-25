@@ -20,7 +20,7 @@ WORKDIR /app
 # Copie o arquivo .jar gerado na etapa anterior para o ambiente de execução
 COPY --from=build /app/target/*.jar app.jar
 
-# Exponha a porta que a aplicação Spring Boot está configurada para usar
+# Exponha a porta que a aplicação Spring- Boot está configurada para usar
 EXPOSE 8080
 
 # Comando para rodar a aplicação
