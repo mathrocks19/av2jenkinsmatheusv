@@ -35,17 +35,14 @@ public class PessoaService {
 
     @Transactional
     public Pessoa atualizar(Long id, Pessoa pessoaAtualizada) {
-        // Verifica se a pessoa existe antes de atualizar
         Pessoa pessoa = pessoaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada"));
 
-        // Atualiza os campos
         pessoa.setNome(pessoaAtualizada.getNome());
         pessoa.setCpf(pessoaAtualizada.getCpf());
         pessoa.setTelefone(pessoaAtualizada.getTelefone());
         pessoa.setEmail(pessoaAtualizada.getEmail());
 
-        // Salva a pessoa atualizada
         return pessoaRepository.save(pessoa);
     }
 
