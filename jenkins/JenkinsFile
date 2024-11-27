@@ -10,7 +10,7 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']],
                           userRemoteConfigs: [
                                 [
-                                    url: 'https://github.com/mathrocks19/AV2JenkinsMatheusV.git',
+                                    url: 'https://github.com/mathrocks19/av2jenkinsmatheusv.git',
                                     credentialsId: 'matheus']]])
             }
         }
