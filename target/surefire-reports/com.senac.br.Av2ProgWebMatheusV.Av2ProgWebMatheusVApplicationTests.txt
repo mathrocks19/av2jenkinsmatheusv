@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.senac.br.Av2ProgWebMatheusV.Av2ProgWebMatheusVApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.373 s -- in com.senac.br.Av2ProgWebMatheusV.Av2ProgWebMatheusVApplicationTests

@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk-20\bin\java.exe" -jar jenkins.war --enable-future-java

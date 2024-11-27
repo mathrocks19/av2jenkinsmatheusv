@@ -2,7 +2,7 @@
 FROM maven:latest AS build
 
 # Defina o diretório de trabalho dentro do contêiner
-WORKDIR /app
+WORKDIR /AV2JenkinsMatheusV
 
 # Copie os arquivos do projeto Maven para o contêiner
 COPY pom.xml .
@@ -15,13 +15,13 @@ RUN mvn clean package -DskipTests
 FROM openjdk:20-jdk-slim
 
 # Defina o diretório de trabalho dentro do contêiner
-WORKDIR /app
+WORKDIR /AV2JenkinsMatheusV
 
 # Copie o arquivo .jar gerado na etapa anterior para o ambiente de execução
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /AV2JenkinsMatheusV/target/*.jar AV2JenkinsMatheusV.jar
 
 # Exponha a porta que a aplicação Spring- Boot está configurada para usar
-EXPOSE 8080
+EXPOSE 8083
 
 # Comando para rodar a aplicação
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "AV2JenkinsMatheusV.jar"]

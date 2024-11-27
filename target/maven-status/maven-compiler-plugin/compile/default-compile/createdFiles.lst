@@ -1,0 +1,5 @@
+com\senac\br\Av2ProgWebMatheusV\repositories\PessoaRepository.class
+com\senac\br\Av2ProgWebMatheusV\Av2ProgWebMatheusVApplication.class
+com\senac\br\Av2ProgWebMatheusV\controllers\PessoaController.class
+com\senac\br\Av2ProgWebMatheusV\services\PessoaService.class
+com\senac\br\Av2ProgWebMatheusV\entities\Pessoa.class

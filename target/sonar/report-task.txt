@@ -1,0 +1,6 @@
+projectKey=pessoa
+serverUrl=http://localhost:9000
+serverVersion=10.7.0.96327
+dashboardUrl=http://localhost:9000/dashboard?id=pessoa
+ceTaskId=d4c0524f-c083-4106-b6e1-88c3418e6d29
+ceTaskUrl=http://localhost:9000/api/ce/task?id=d4c0524f-c083-4106-b6e1-88c3418e6d29
