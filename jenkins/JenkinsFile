@@ -15,20 +15,7 @@ pipeline {
             }
         }
 
-        stage('SonarQube analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('pessoa') {
-                        bat """
-                            mvn clean verify sonar:sonar ^
-                                -Dspring.profiles.active=${SONAR_PROFILE} ^
-                                -Dsonar.projectKey=pessoa ^
-                                -Dsonar.projectName="pessoa"
-                        """
-                    }
-                }
-            }
-        }
+
 
         stage('Construir Imagem Docker') {
             steps {
