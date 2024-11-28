@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        SONAR_PROFILE = 'sonar' // Perfil para SonarQube
-        DEPLOY_PROFILE = 'deploy' // Perfil para Deploy
+
+        DEPLOY_PROFILE = 'deploy'
     }
     stages {
         stage('Verificar Repositorio') {
