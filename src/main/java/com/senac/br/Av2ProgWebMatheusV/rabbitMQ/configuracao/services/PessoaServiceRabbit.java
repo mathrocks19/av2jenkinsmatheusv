@@ -15,11 +15,16 @@ public class PessoaServiceRabbit {
     }
 
     public void enviarPessoa(Pessoa pessoa) {
-        rabbitTemplate.convertAndSend(
-                RabbitMQConfig.EXCHANGE_NAME,
-                RabbitMQConfig.ROUTING_KEY,
-                pessoa
-        );
-        System.out.println("Pessoa enviada para RabbitMQ: " + pessoa);
+        try {
+            rabbitTemplate.convertAndSend(
+                    RabbitMQConfig.EXCHANGE_NAME,
+                    RabbitMQConfig.ROUTING_KEY,
+                    pessoa
+            );
+            System.out.println("Pessoa enviada para RabbitMQ: " + pessoa);
+        } catch (Exception e) {
+
+            System.err.println("Erro ao enviar para RabbitMQ: " + e.getMessage());
+        }
     }
 }

@@ -18,12 +18,12 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('sq1') {
+                    withSonarQubeEnv('pessoa') {
                         bat """
                             mvn clean verify sonar:sonar ^
                                 -Dspring.profiles.active=${SONAR_PROFILE} ^
-                                -Dsonar.projectKey=sq1 ^
-                                -Dsonar.projectName="sq1"
+                                -Dsonar.projectKey=pessoa ^
+                                -Dsonar.projectName="pessoa"
                         """
                     }
                 }
