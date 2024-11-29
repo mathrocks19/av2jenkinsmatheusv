@@ -1,28 +1,35 @@
 pipeline {
     agent any
     environment {
-
         DEPLOY_PROFILE = 'deploy'
     }
     stages {
         stage('Verificar Repositorio') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']],
-                          userRemoteConfigs: [
-                                [
-                                    url: 'https://github.com/mathrocks19/av2jenkinsmatheusv.git',
-                                    credentialsId: 'matheus']]])
+                script {
+                    // Realiza o checkout do repositório
+                    checkout([$class: 'GitSCM',
+                              branches: [[name: '*/main']],
+                              userRemoteConfigs: [
+                                  [
+                                      url: 'https://github.com/mathrocks19/av2jenkinsmatheusv.git',
+                                      credentialsId: 'matheus'
+                                  ]
+                              ]
+                    ])
+                }
             }
         }
-
-
 
         stage('Construir Imagem Docker') {
             steps {
                 script {
                     def appName = 'av2jenkinsmatheusv'
                     def imageTag = "${appName}:${env.BUILD_ID}"
-                    bat "docker build --build-arg SPRING_PROFILES_ACTIVE=${DEPLOY_PROFILE} -t ${imageTag} ."
+                    // Construa a imagem Docker com o perfil especificado
+                    bat """
+                        docker build --build-arg SPRING_PROFILES_ACTIVE=${DEPLOY_PROFILE} -t ${imageTag} .
+                    """
                 }
             }
         }
@@ -32,14 +39,17 @@ pipeline {
                 script {
                     def appName = 'av2jenkinsmatheusv'
                     def imageTag = "${appName}:${env.BUILD_ID}"
-                    bat "docker stop ${appName} || exit 0"
-                    bat "docker rm ${appName} || exit 0"
+                    // Parar e remover containers anteriores
+                    bat """
+                        docker stop ${appName} || exit 0
+                        docker rm ${appName} || exit 0
+                    """
+                    // Subir o deploy com docker-compose
                     bat "docker-compose up -d --build"
                 }
             }
         }
     }
-
     post {
         success {
             echo 'Deploy realizado com sucesso!'
