@@ -7,7 +7,6 @@ pipeline {
         stage('Verificar Repositorio') {
             steps {
                 script {
-                    // Realiza o checkout do repositório
                     checkout([$class: 'GitSCM',
                               branches: [[name: '*/main']],
                               userRemoteConfigs: [
@@ -26,7 +25,6 @@ pipeline {
                 script {
                     def appName = 'av2jenkinsmatheusv'
                     def imageTag = "${appName}:${env.BUILD_ID}"
-                    // Construa a imagem Docker com o perfil especificado
                     bat """
                         docker build --build-arg SPRING_PROFILES_ACTIVE=${DEPLOY_PROFILE} -t ${imageTag} .
                     """
@@ -39,11 +37,8 @@ pipeline {
                 script {
                     def appName = 'av2jenkinsmatheusv'
                     def imageTag = "${appName}:${env.BUILD_ID}"
-                    // Parar e remover containers anteriores
-                    bat """
-                        docker stop ${appName} || exit 0
-                        docker rm ${appName} || exit 0
-                    """
+
+
                     // Subir o deploy com docker-compose
                     bat "docker-compose up -d --build"
                 }
